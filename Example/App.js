@@ -35,7 +35,6 @@ const MainTabPage = TabNavigator(
               <Icon name="ios-disc-outline" size={30} color={tintColor} />
           )
         })
-
       },
       Discover: {
         screen:Discover,

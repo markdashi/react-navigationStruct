@@ -10,14 +10,22 @@ import {
     View
 } from 'react-native';
 
+import {H3} from 'TextTool';
+
+
+
 export default class Discover extends React.Component{
-    
+
+    static navigationOptions = {
+        headerTitle:<H3>发现</H3>
+    }
+
     render(){
         return(
             <View style={{flex:1}}>
                 <Text>{'Discover'}</Text>
+
                 <Text onPress={()=>{
-                       console.log(this.props)
                        this.props.navigation.navigate('Detail')
                 }}>{'点击我就要跳转了'}</Text>
             </View>
