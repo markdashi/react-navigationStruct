@@ -18,20 +18,6 @@ import screen from 'screen'
 
 import {H3,Tip} from 'TextTool'
 
-// const CustomSeparatorComponent  = ({text}) => (
-//     <View>
-//         <SeparatorComponent />
-//         <Text style={styles.separatorText}>{text}</Text>
-//         <SeparatorComponent />
-//     </View>
-// );
-
-
-// <TouchableOpacity onPress={() => {
-//     this.props.navigation.navigate('Detail')
-// }}>
-// <H3 style={{height:44,backgroundColor:'red'}}>{item}</H3>
-// </TouchableOpacity>
 export default class Home extends React.Component{
 
      static navigationOptions = {
