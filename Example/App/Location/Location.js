@@ -10,10 +10,9 @@ import {
     View
 } from 'react-native';
 
-import CommonListItem from 'CommonListItem';
-import CommonGroupItem from 'CommonGroupItem';
+import CommonListHeader from 'CommonListHeader'
 
-import CommonList from 'CommonList'
+
 
 export default class Location extends React.Component{
 
@@ -21,7 +20,6 @@ export default class Location extends React.Component{
       constructor(props) {
         super(props);
         // 初始状态
-
 
           var Groups = [];
           //设置数据源
@@ -32,10 +30,11 @@ export default class Location extends React.Component{
           //第二组
           this._setGroupItem1(Groups);
 
+          this._setGroupItem2(Groups);
+
           this.state = {
               dataSource: Groups
           }
-
       }
 
     //组件
@@ -44,30 +43,64 @@ export default class Location extends React.Component{
     }
 
     _setGroupItem0(Groups){
-        var item0 = new CommonListItem('','我的','你好');
-        var item1 = new CommonListItem('icon_mine_myAccount_livingCity','我的','你好');
-        var item2 = new CommonListItem('icon_mine_myAccount_securityQuestion','我的','你好');
-        var item3 = new CommonListItem('icon_mine_myAccount_address','我的','你好');
-        var item4 = new CommonListItem('icon_mine_myAccount_address','我的','你好');
+        var item0 = new CommonListHeader.CommonListItem('','我的','20');
+        var item1 = new CommonListHeader.CommonListItem('icon_mine_myAccount_livingCity','我的','20',true);
+        var item2 = new CommonListHeader.CommonListItem('icon_mine_myAccount_securityQuestion','我的','20',true);
+        var item3 = new CommonListHeader.CommonListItem('icon_mine_myAccount_address','我的','20');
+        item3.routeScreen = {
+            screen:'Discover'
+        };
+        var item4 = new CommonListHeader.CommonListItem('icon_mine_myAccount_address','我的','20');
+        item4.routeScreen = {
+            screen:'Detail'
+        };
 
-        var group0 = new CommonGroupItem([item0,item1,item2,item3,item4],0);
+        var group0 = new CommonListHeader.CommonGroupItem([item0,item1,item2,item3,item4],10);
         Groups.push(group0);
 
     }
     _setGroupItem1(Groups){
-        var item0 = new CommonListItem('icon_mine_myAccount_address','我的','');
-        var item1 = new CommonListItem('icon_mine_myAccount_livingCity','我的','你好');
-        var item2 = new CommonListItem('','我的','你好');
+        var item0 = new CommonListHeader.CommonListItem('icon_mine_myAccount_address','我的','');
+        var item1 = new CommonListHeader.CommonListItem('icon_mine_myAccount_livingCity','我的','20');
+        var item2 = new CommonListHeader.CommonListItem('','我的','');
+        item2.itemClick = (()=>{
+            this.props.navigation.navigate('Detail');
+        });
 
-        var group1 = new CommonGroupItem([item0,item1,item2],50);
+        var group1 = new CommonListHeader.CommonGroupItem([item0,item1,item2],20);
         Groups.push(group1);
     }
-
-
+    _setGroupItem2(Groups){
+        var item0 = new CommonListHeader.CommonListItem('icon_mine_myAccount_address','我的','');
+        var item1 = new CommonListHeader.CommonListItem('icon_mine_myAccount_livingCity','我的','20');
+        var item2 = new CommonListHeader.CommonListItem('','我的','');
+        var item3 = new CommonListHeader.CommonListSwitch('icon_mine_myAccount_address','我的','20');
+        var item4 = new CommonListHeader.CommonListSwitch('','我的');
+        item4.switchOnvalueChange=function (value) {
+            alert(value)
+        }
+        var item5 = new CommonListHeader.CommonListSwitch('','哈哈哈');
+        var group2 = new CommonListHeader.CommonGroupItem([item0,item1,item2,item3,item4,item5],20);
+        Groups.push(group2);
+    }
+    
 
     render(){
         return(
-            <CommonList dataSource={this.state.dataSource}/>
+            <CommonListHeader.CommonList
+                dataSource={this.state.dataSource}
+                switchTintColor={'red'}
+                didSelectedItem={(value)=>{
+                   // alert(value)
+                }}
+                navigation={this.props.navigation}
+                imageStyle={{}}
+                titleStyle={{}}
+                tipTitleStyle={{}}
+                accessoryStyle={{}}
+            />
         )
     }
 }
+// 设置原点
+//width: 15,backgroundColor:'red',borderRadius: 6,overflow: 'hidden'

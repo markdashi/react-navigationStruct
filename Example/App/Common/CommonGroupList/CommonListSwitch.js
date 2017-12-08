@@ -2,10 +2,15 @@
  *@providesModule CommonListSwitch
  */
 
-import CommListItem from 'CommListItem';
+import CommonListItem from 'CommonListItem';
 
-function CommonListSwitch(image,title,tipTitle) {
-    CommListItem.call(image,title,tipTitle)
+function CommonListSwitch(image,title) {
+     CommonListItem.call(this,image,title);
+     
+     this.disabled = true;
+     this.switchOnvalueChange = null;
+     //switch 默认关
+     this.switchIsOn = false
 }
 
 module.exports = CommonListSwitch;
