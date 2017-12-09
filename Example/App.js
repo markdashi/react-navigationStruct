@@ -22,6 +22,7 @@ import Home from 'Home';
 import Location from 'Location';
 import Detail from 'Detail';
 
+import Setting from 'Setting'
 /**
  * 实现底部 TabBar
  */
@@ -83,7 +84,8 @@ const App = StackNavigator({
   Discover: {screen:Discover},
   Home:{screen:Home},
   Location:{screen:Location},
-  Detail:{screen:Detail}
+  Detail:{screen:Detail},
+  Setting:{screen:Setting}
 },{
   navigationOptions: {
     gesturesEnabled: true,

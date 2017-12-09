@@ -20,13 +20,22 @@ import CommonRowCell from './CommonRowCell'
 export default class CommonList extends Component<{}>{
 
     static propTypes = {
-        dataSource : PropTypes.array.isRequired
-    }
+        dataSource : PropTypes.array.isRequired,
+        switchTintColor:PropTypes.string,
+        didSelectedItem:PropTypes.func,
+        navigation:PropTypes.object,
+
+        //样式设置
+        imageStyle:PropTypes.object,
+        titleStyle:PropTypes.object,
+        tipTitleStyle:PropTypes.object,
+        accessoryStyle:PropTypes.object
+    };
 
     constructor(props){
         super(props);
 
-        var GroupsData = []
+        var GroupsData = [];
 
         var sourceData = this.props.dataSource;
         sourceData.forEach((groupItem,index) => {
@@ -35,7 +44,7 @@ export default class CommonList extends Component<{}>{
                 sectionHight:groupItem.sectionHeight,
                 data:groupItem.rowData
             })
-        })
+        });
         this.state={
             sectionData:GroupsData
         }
@@ -45,7 +54,10 @@ export default class CommonList extends Component<{}>{
     _renderItem({item}){
         console.log(item);
         return(
-           <CommonRowCell rowData={item}/>
+           <CommonRowCell 
+               rowData={item}
+               {...this.props}
+           />
         )
     }
 
@@ -53,7 +65,6 @@ export default class CommonList extends Component<{}>{
         console.log(section);
         return(
             <View style={{height:section.sectionHight}}>
-
             </View>
         )
     }
@@ -69,7 +80,17 @@ export default class CommonList extends Component<{}>{
             />
         )
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 682506c7dee2c6311fdd8fb9a20bd0228bcd71c3
 }
-/**
- *
- */
+const styles = StyleSheet.create({
+
+
+
+});
+
+// switchTintColor={this.props.switchTintColor}
+// didSelectedItem={this.props.didSelectedItem}
+// navigation={this.props.navigation}

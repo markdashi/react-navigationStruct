@@ -9,7 +9,8 @@ import {
     View,
     SectionList,
     TouchableOpacity,
-    Image
+    Image,
+    Switch
 } from 'react-native';
 
 import screen from 'screen'
@@ -20,60 +21,133 @@ import {PropTypes} from 'prop-types'
 
 export default class CommonRowCell extends Component<{}>{
     
-    static propTypes = {
-        rowData:PropTypes.object.isRequired
-    }
+    // static propTypes = {
+    //     rowData:PropTypes.object.isRequired,
+    //     switchTintColor:PropTypes.string,
+    //     didSelectedItem:PropTypes.func,
+    //     navigation:PropTypes.object
+    // }
+
+    // 构造
+      constructor(props) {
+        super(props);
+        // 初始状态
+        this.state = {
+            isOn:this.props.rowData.switchIsOn
+        };
+      }
 
 
     render(){
         return(
-            <TouchableOpacity>
+            <TouchableOpacity
+                disabled={this.props.rowData.disabled}
+                onPress={() => {
+                     if (this.props.rowData.itemClick){
+                           this.props.rowData.itemClick()
+                     }
+                     if (this.props.didSelectedItem){
+                         this.props.didSelectedItem(this.props.rowData)
+                     }
+                     if (this.props.rowData.routeScreen){
+
+                          if (this.props.navigation){
+                             var route = this.props.rowData.routeScreen.screen;
+                             this.props.navigation.navigate(route)
+                          } 
+                     }
+                }}
+            >
                 {this._renderItemCell(this.props.rowData)}
             </TouchableOpacity>
         )
     }
 
     _renderItemCell(item){
-
+        
         var className = item.constructor.name;
 
         if (className == 'CommonListItem'){
-
-
             return(
-                <View style={{height: screen.width * 0.137,paddingLeft:8,flexDirection:'row',alignItems:'center',backgroundColor:'white'}}>
+                <View style={styles.containStyle}>
                     {item.image ? <View style={{width:45,justifyContent:'center',alignItems:'center'}}>
-                        <Image source={{uri:item.image}} style={{width: 34* screen.onePixel,height:34 * screen.onePixel}}/>
+                        <Image source={{uri:item.image}} style={[styles.imageStyle,this.props.imageStyle]}/>
                     </View>:null}
-                    <View style={{flex:1,height:'100%',flexDirection:'row',alignItems:'center',borderBottomWidth: screen.onePixel *2, borderColor: '#e8e8e8'}}>
+                    <View style={styles.rightContainStyle}>
                         <View style={{flex:1,justifyContent:'center'}}>
-                            <H3 style={{fontSize:15}}>{item.title}</H3>
+                            <H3 style={[styles.titleTextStyle,this.props.titleStyle]}>{item.title}</H3>
                         </View>
-                        <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', paddingRight: 8}}>
+                        <View style={[styles.rightAccessoryStyle,this.props.accessoryStyle]}>
 
-                            {item.tipTitle?<Tip style={{marginRight:5}}>{item.tipTitle}</Tip>:null}
-                            <Image source={{uri:'icon_shike_arrow'}} style={{width: 14* screen.onePixel,height:24 * screen.onePixel}}/>
-                        </View>
+                        {item.tipTitle?<Tip style={[styles.tipTitleStyle,this.props.tipTitleStyle]}>{item.tipTitle}</Tip>:null}
+                        {(!item.hiddenArrow)?<Image source={{uri:'icon_shike_arrow'}} style={{width: 14* screen.onePixel,height:24 * screen.onePixel}}/>:null}
+                    </View>
                     </View>
                 </View>
             )
         }
         if (className == 'CommonListSwitch'){
-            this._renderCommonListSwitch(item);
+            //渲染带switch的cell
+            return(
+                <View style={styles.containStyle}>
+                    {item.image ? <View style={{width:45,justifyContent:'center',alignItems:'center'}}>
+                        <Image source={{uri:this.props.rowData.image}} style={[styles.imageStyle,this.props.imageStyle]}/>
+                    </View>:null}
+                    <View style={styles.rightContainStyle}>
+                        <View style={{flex:1,justifyContent:'center'}}>
+                            <H3 style={[styles.titleTextStyle,this.props.titleStyle]}>{this.props.rowData.title}</H3>
+                        </View>
+                        <View style={[styles.rightAccessoryStyle,this.props.accessoryStyle]}>
+                            <Switch
+                                onValueChange={(value)=>{
+                                   this.setState({
+                                      isOn:value
+                                   })
+                                 if (this.props.rowData.switchOnvalueChange){
+                                     this.props.rowData.switchOnvalueChange(value)
+                                 }
+                            }}
+                                onTintColor={this.props.switchTintColor}
+                                value={this.state.isOn}
+                            />
+                        </View>
+                    </View>
+                </View>
+            )
         }
     }
 
-    //渲染带箭头的cell
-    _renderCommonListItem(item){
-        console.log('过来了' + item.image)
-
-
-    }
-    //渲染带switch的cell
-    _renderCommonListSwitch(item){
-
-    }
 }
 const styles = StyleSheet.create({
-
+    containStyle:{
+        flexDirection:'row',
+        flexDirection:'row',
+        backgroundColor:'white',
+        height: screen.width * 0.137,
+        paddingLeft:8,
+    },
+    imageStyle:{
+        width: 34* screen.onePixel,
+        height:34 * screen.onePixel
+    },
+    rightContainStyle:{
+        flexDirection:'row',
+        alignItems:'center',
+        flex:1,
+        height:'100%',
+        borderBottomWidth: screen.onePixel *1,
+        borderColor: '#e8e8e8'
+    },
+    titleTextStyle:{
+        fontSize:15
+    },
+    rightAccessoryStyle:{
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingRight: 8
+    },
+    tipTitleStyle:{
+        marginRight:5
+    }
 })
