@@ -23,7 +23,6 @@ export default class CommonList extends Component<{}>{
         dataSource : PropTypes.array.isRequired
     }
 
-
     constructor(props){
         super(props);
 
@@ -70,8 +69,6 @@ export default class CommonList extends Component<{}>{
             />
         )
     }
-
-
 }
 /**
  *

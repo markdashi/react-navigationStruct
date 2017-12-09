@@ -1,5 +1,5 @@
 /**
- *@providesModule CommonItemCell
+ * @providesModule CommonItemCell
  */
 
 import React, { Component } from 'react';
