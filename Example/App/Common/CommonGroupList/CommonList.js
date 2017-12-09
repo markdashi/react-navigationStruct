@@ -80,10 +80,6 @@ export default class CommonList extends Component<{}>{
             />
         )
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> 682506c7dee2c6311fdd8fb9a20bd0228bcd71c3
 }
 const styles = StyleSheet.create({
 
