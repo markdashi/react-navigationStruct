@@ -16,6 +16,8 @@ function CommonListItem(image,title,tipTitle,showArrow) {
     //路由Screen
     this.routeScreen = null;
 
+    //自定义样式
+    this.customItemTipStyle = {};
 }
 
 module.exports = CommonListItem;

@@ -25,10 +25,20 @@ export default class CommonList extends Component<{}>{
         didSelectedItem:PropTypes.func,
         navigation:PropTypes.object,
 
+        //sectionHeader
+        SectionHeader:PropTypes.object,
+
+
         //样式设置
+        //cell样式
+        CommonRowCellStyle:PropTypes.object,
+        //图片样式
         imageStyle:PropTypes.object,
+        //title 文字样式
         titleStyle:PropTypes.object,
+        //tip 文字样式
         tipTitleStyle:PropTypes.object,
+        // 尾部样式
         accessoryStyle:PropTypes.object
     };
 
@@ -42,7 +52,8 @@ export default class CommonList extends Component<{}>{
             console.log(groupItem.sectionHeight)
             GroupsData.push({
                 sectionHight:groupItem.sectionHeight,
-                data:groupItem.rowData
+                data:groupItem.rowData,
+                sectionId:index
             })
         });
         this.state={
@@ -52,7 +63,6 @@ export default class CommonList extends Component<{}>{
 
 
     _renderItem({item}){
-        console.log(item);
         return(
            <CommonRowCell 
                rowData={item}
@@ -62,9 +72,29 @@ export default class CommonList extends Component<{}>{
     }
 
     _renderSectionHeader({section}){
-        console.log(section);
+
+        console.log(this.props.SectionHeader)
+
+        if (section.sectionId == 0){
+            console.log('来了')
+            {this.props.SectionHeader}
+            // return(
+            //     <View style={{height:200,backgroundColor:'red',justifyContent:'center',alignItems:'center'}}>
+            //         <Text>{'测试的一个头部'}</Text>
+            //     </View>
+            // )
+        }else {
+            return (
+                <View style={{height:section.sectionHight}}>
+                </View>
+            )
+        }
+    }
+
+    _renderCustom(){
         return(
-            <View style={{height:section.sectionHight}}>
+            <View style={{height:200,backgroundColor:'red',justifyContent:'center',alignItems:'center'}}>
+                <Text>{'测试的一个头部'}</Text>
             </View>
         )
     }
@@ -77,16 +107,12 @@ export default class CommonList extends Component<{}>{
                 renderSectionHeader={this._renderSectionHeader.bind(this)}
                 sections={this.state.sectionData}
                 keyExtractor={(item,index) => index}
+                stickySectionHeadersEnabled={false}
+                
             />
         )
     }
 }
 const styles = StyleSheet.create({
 
-
-
 });
-
-// switchTintColor={this.props.switchTintColor}
-// didSelectedItem={this.props.didSelectedItem}
-// navigation={this.props.navigation}

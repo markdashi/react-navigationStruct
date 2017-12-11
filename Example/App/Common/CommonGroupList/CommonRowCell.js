@@ -21,13 +21,6 @@ import {PropTypes} from 'prop-types'
 
 export default class CommonRowCell extends Component<{}>{
     
-    // static propTypes = {
-    //     rowData:PropTypes.object.isRequired,
-    //     switchTintColor:PropTypes.string,
-    //     didSelectedItem:PropTypes.func,
-    //     navigation:PropTypes.object
-    // }
-
     // 构造
       constructor(props) {
         super(props);
@@ -69,7 +62,7 @@ export default class CommonRowCell extends Component<{}>{
 
         if (className == 'CommonListItem' || className == 'CommonTextItem'){
             return(
-                <View style={styles.containStyle}>
+                <View style={[styles.containStyle,this.props.CommonRowCellStyle]}>
                     {item.image ? <View style={{width:45,justifyContent:'center',alignItems:'center'}}>
                         <Image source={{uri:item.image}} style={[styles.imageStyle,this.props.imageStyle]}/>
                     </View>:null}
@@ -78,8 +71,7 @@ export default class CommonRowCell extends Component<{}>{
                             <H3 style={[styles.titleTextStyle,this.props.titleStyle]}>{item.title}</H3>
                         </View>
                         <View style={[styles.rightAccessoryStyle,this.props.accessoryStyle]}>
-
-                        {item.tipTitle?<Tip style={[styles.tipTitleStyle,this.props.tipTitleStyle]}>{item.tipTitle}</Tip>:null}
+                        {item.tipTitle?<Tip style={[styles.tipTitleStyle,this.props.tipTitleStyle,item.customItemTipStyle]}>{item.tipTitle}</Tip>:null}
                         {(!item.hiddenArrow)?<Image source={require('../imgs/icon_shike_arrow.png')} style={{width: 14* screen.onePixel,height:24 * screen.onePixel}}/>:null}
                     </View>
                     </View>
@@ -89,7 +81,7 @@ export default class CommonRowCell extends Component<{}>{
         if (className == 'CommonSwitchItem'){
             //渲染带switch的cell
             return(
-                <View style={styles.containStyle}>
+                <View style={[styles.containStyle,this.props.CommonRowCellStyle]}>
                     {item.image ? <View style={{width:45,justifyContent:'center',alignItems:'center'}}>
                         <Image source={{uri:this.props.rowData.image}} style={[styles.imageStyle,this.props.imageStyle]}/>
                     </View>:null}
@@ -121,7 +113,6 @@ export default class CommonRowCell extends Component<{}>{
 const styles = StyleSheet.create({
     containStyle:{
         flexDirection:'row',
-        flexDirection:'row',
         backgroundColor:'white',
         height: screen.width * 0.137,
         paddingLeft:8,
@@ -148,6 +139,6 @@ const styles = StyleSheet.create({
         paddingRight: 8
     },
     tipTitleStyle:{
-        marginRight:5
+        marginRight:5,
     }
 })

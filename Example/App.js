@@ -21,6 +21,7 @@ import Discover from 'Discover';
 import Home from 'Home';
 import Location from 'Location';
 import Detail from 'Detail';
+import Profile from 'Profile'
 
 import Setting from 'Setting'
 /**
@@ -54,6 +55,15 @@ const MainTabPage = TabNavigator(
               <Icon name="ios-add-circle" size={30} color={tintColor} />
           )
         })
+      },
+      Profile:{
+        screen:Profile,
+        navigationOptions:() => ({
+          tabBarLabel:'我的',
+          tabBarIcon:({focused, tintColor}) => (
+              <Icon name="ios-flower" size={30} color={tintColor} />
+          )
+        })
       }
     },
     {
@@ -85,7 +95,8 @@ const App = StackNavigator({
   Home:{screen:Home},
   Location:{screen:Location},
   Detail:{screen:Detail},
-  Setting:{screen:Setting}
+  Setting:{screen:Setting},
+  Profile:{screen:Profile}
 },{
   navigationOptions: {
     gesturesEnabled: true,
