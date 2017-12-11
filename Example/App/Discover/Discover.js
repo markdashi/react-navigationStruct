@@ -13,7 +13,6 @@ import {
 import {H3} from 'TextTool';
 
 
-
 export default class Discover extends React.Component{
 
     static navigationOptions = {

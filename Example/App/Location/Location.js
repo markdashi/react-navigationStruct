@@ -12,8 +12,6 @@ import {
 
 import CommonListHeader from 'CommonListHeader'
 
-
-
 export default class Location extends React.Component{
 
     // 构造
@@ -71,15 +69,15 @@ export default class Location extends React.Component{
         Groups.push(group1);
     }
     _setGroupItem2(Groups){
-        var item0 = new CommonListHeader.CommonListItem('icon_mine_myAccount_address','我的','');
+        var item0 = new CommonListHeader.CommonSwitchItem('icon_mine_myAccount_address','我的','');
         var item1 = new CommonListHeader.CommonListItem('icon_mine_myAccount_livingCity','我的','20');
         var item2 = new CommonListHeader.CommonListItem('','我的','');
-        var item3 = new CommonListHeader.CommonListSwitch('icon_mine_myAccount_address','我的','20');
-        var item4 = new CommonListHeader.CommonListSwitch('','我的');
+        var item3 = new CommonListHeader.CommonListItem('icon_mine_myAccount_address','我的','20');
+        var item4 = new CommonListHeader.CommonSwitchItem('','我的');
         item4.switchOnvalueChange=function (value) {
             alert(value)
         }
-        var item5 = new CommonListHeader.CommonListSwitch('','哈哈哈');
+        var item5 = new CommonListHeader.CommonListItem('','哈哈哈');
         var group2 = new CommonListHeader.CommonGroupItem([item0,item1,item2,item3,item4,item5],20);
         Groups.push(group2);
     }

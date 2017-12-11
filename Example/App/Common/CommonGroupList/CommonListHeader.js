@@ -3,13 +3,15 @@
  */
 
 import CommonListItem from 'CommonListItem';
+import CommonTextItem from 'CommonTextItem'
+import CommonSwitchItem from 'CommonSwitchItem'
 import CommonGroupItem from 'CommonGroupItem';
-import CommonListSwitch from 'CommonListSwitch'
 import CommonList from 'CommonList'
 
 module.exports={
     CommonListItem,
     CommonGroupItem,
-    CommonListSwitch,
-    CommonList
-}
+    CommonList,
+    CommonTextItem,
+    CommonSwitchItem
+};

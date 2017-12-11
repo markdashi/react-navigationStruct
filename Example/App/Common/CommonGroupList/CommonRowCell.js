@@ -67,7 +67,7 @@ export default class CommonRowCell extends Component<{}>{
         
         var className = item.constructor.name;
 
-        if (className == 'CommonListItem'){
+        if (className == 'CommonListItem' || className == 'CommonTextItem'){
             return(
                 <View style={styles.containStyle}>
                     {item.image ? <View style={{width:45,justifyContent:'center',alignItems:'center'}}>
@@ -80,13 +80,13 @@ export default class CommonRowCell extends Component<{}>{
                         <View style={[styles.rightAccessoryStyle,this.props.accessoryStyle]}>
 
                         {item.tipTitle?<Tip style={[styles.tipTitleStyle,this.props.tipTitleStyle]}>{item.tipTitle}</Tip>:null}
-                        {(!item.hiddenArrow)?<Image source={{uri:'icon_shike_arrow'}} style={{width: 14* screen.onePixel,height:24 * screen.onePixel}}/>:null}
+                        {(!item.hiddenArrow)?<Image source={require('../imgs/icon_shike_arrow.png')} style={{width: 14* screen.onePixel,height:24 * screen.onePixel}}/>:null}
                     </View>
                     </View>
                 </View>
             )
         }
-        if (className == 'CommonListSwitch'){
+        if (className == 'CommonSwitchItem'){
             //渲染带switch的cell
             return(
                 <View style={styles.containStyle}>

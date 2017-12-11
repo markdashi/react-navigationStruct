@@ -36,23 +36,23 @@ export default class Setting extends React.Component{
           this._setGroupItem3(Groups);
 
           this.state = {
-              dataSource: Groups
+              dataSource: Groups,
           }
       }
 
     _setGroupItem0(Groups){
-        var item0 = new CommonListHeader.CommonListItem('','在线播放音质','自动');
-        var item1 = new CommonListHeader.CommonListItem('','下载音质','极高');
+        var item0 = new CommonListHeader.CommonTextItem('在线播放音质','自动');
+        var item1 = new CommonListHeader.CommonTextItem('下载音质','极高');
         var group0 = new CommonListHeader.CommonGroupItem([item0,item1],10);
         Groups.push(group0);
 
     }
     _setGroupItem1(Groups){
-        var item0 = new CommonListHeader.CommonListSwitch('','使用2G/3G/4G网络播放');
-        var item1 = new CommonListHeader.CommonListSwitch('','使用2G/3G/4G网络下载');
-        var item2 = new CommonListHeader.CommonListSwitch('','动态页中WiFi下自动播放视频');
+        var item0 = new CommonListHeader.CommonSwitchItem('','使用2G/3G/4G网络播放');
+        var item1 = new CommonListHeader.CommonSwitchItem('','使用2G/3G/4G网络下载');
+        var item2 = new CommonListHeader.CommonSwitchItem('','动态页中WiFi下自动播放视频');
         item2.switchIsOn = true
-        var item3 = new CommonListHeader.CommonListSwitch('','视频页中WiFi下连续播放');
+        var item3 = new CommonListHeader.CommonSwitchItem('','视频页中WiFi下连续播放');
         item3.switchIsOn = true
         var group1 = new CommonListHeader.CommonGroupItem([item0,item1,item2,item3],10);
         Groups.push(group1);
@@ -61,6 +61,9 @@ export default class Setting extends React.Component{
         var item0 = new CommonListHeader.CommonListItem('','账号和绑定设置');
         var item1 = new CommonListHeader.CommonListItem('','寻找并邀请好友');
         var item2 = new CommonListHeader.CommonListItem('','消息和隐私设置');
+        item2.itemClick = () => {
+            alert(this.state.keepState)
+        }
 
         var group2 = new CommonListHeader.CommonGroupItem([item0,item1,item2],10);
         Groups.push(group2);
@@ -68,9 +71,10 @@ export default class Setting extends React.Component{
 
     _setGroupItem3(Groups){
         var item0 = new CommonListHeader.CommonListItem('','均衡器','已关闭');
-        var item1 = new CommonListHeader.CommonListSwitch('','经典播放界面');
-        var item2 = new CommonListHeader.CommonListSwitch('','手机锁屏菜单显示"喜欢"');
-        var item3 = new CommonListHeader.CommonListSwitch('','锁屏歌词');
+        var item1 = new CommonListHeader.CommonSwitchItem('','经典播放界面');
+        var item2 = new CommonListHeader.CommonSwitchItem('','手机锁屏菜单显示"喜欢"');
+        var item3 = new CommonListHeader.CommonSwitchItem('','锁屏歌词');
+
 
         var group3 = new CommonListHeader.CommonGroupItem([item0,item1,item2,item3,],10);
         Groups.push(group3);
@@ -82,7 +86,7 @@ export default class Setting extends React.Component{
                 dataSource={this.state.dataSource}
                 switchTintColor={'red'}
                 didSelectedItem={(value)=>{
-                   alert(value)
+                   // alert(value)
                 }}
                 tipTitleStyle={{fontSize:14,color:'#666666'}}
             />
