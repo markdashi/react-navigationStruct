@@ -15,7 +15,7 @@ import {
 
 import screen from 'screen'
 
-import {H3,Tip} from 'TextTool'
+import {H3,Tip} from 'TextTools'
 
 import {PropTypes} from 'prop-types'
 
