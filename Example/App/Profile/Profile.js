@@ -86,21 +86,18 @@ export default class Profile extends Component<{}>{
                 }}
                 tipTitleStyle={{fontSize:14,color:'#666666'}}
                 CommonRowCellStyle={{height:44}}
-                SectionHeader={
-                   <View style={{height:100,backgroundColor:'red',marginBottom:10}}>
-                        <Text>{'测试的一个头部'}</Text>
-                   </View>
-                }
+                SectionHeader={this._sectionHeader()}
             />
         )
     }
     
     _sectionHeader(){
-        return(
-            <View style={{height:100,backgroundColor:'red',marginBottom:10}}>
-                <Text>{'测试的一个头部'}</Text>
-            </View>
-        )
+
+            return(
+                <View style={{height:100,backgroundColor:'red',marginBottom:10,justifyContent:'center',alignItems:'center'}}>
+                    <Text>{'测试的一个头部'}</Text>
+                </View>
+            )
     }
 
 }

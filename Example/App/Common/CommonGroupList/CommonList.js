@@ -28,7 +28,6 @@ export default class CommonList extends Component<{}>{
         //sectionHeader
         SectionHeader:PropTypes.object,
 
-
         //样式设置
         //cell样式
         CommonRowCellStyle:PropTypes.object,
@@ -72,17 +71,11 @@ export default class CommonList extends Component<{}>{
     }
 
     _renderSectionHeader({section}){
-
-        console.log(this.props.SectionHeader)
-
+        
         if (section.sectionId == 0){
-            console.log('来了')
-            {this.props.SectionHeader}
-            // return(
-            //     <View style={{height:200,backgroundColor:'red',justifyContent:'center',alignItems:'center'}}>
-            //         <Text>{'测试的一个头部'}</Text>
-            //     </View>
-            // )
+            return(
+                this.props.SectionHeader
+            )
         }else {
             return (
                 <View style={{height:section.sectionHight}}>
