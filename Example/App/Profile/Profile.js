@@ -23,10 +23,11 @@ export default class Profile extends Component<{}>{
       constructor(props) {
         super(props);
         // 初始状态
-          var Groups = [];
+
           //设置数据源
           //面向对象开发
           //面向属性开发
+          var Groups = [];
           //第一组
           this._setGroupItem0(Groups);
           //第二组
@@ -44,7 +45,7 @@ export default class Profile extends Component<{}>{
 
     _setGroupItem0(Groups){
         var item0 = new CommonListHeader.CommonListItem('33.png','我的消息','4');
-            item0.customItemTipStyle = {fontSize:14,color:'white',width:13,borderRadius:6,backgroundColor:'red',overflow:'hidden'};
+            item0.customItemTipStyle = {fontSize:14,color:'white',width:12,borderRadius:6,backgroundColor:'red',overflow:'hidden'};
         var group0 = new CommonListHeader.CommonGroupItem([item0],10);
         Groups.push(group0);
 
